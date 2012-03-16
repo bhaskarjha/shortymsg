@@ -17,3 +17,4 @@
 *.swp
 *~
 .project
+bundler_stubs/
