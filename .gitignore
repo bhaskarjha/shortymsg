@@ -13,12 +13,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-
-# Ignore other unneeded files
-doc/
+/doc
 *.swp
 *~
 .project
-.DS_Store
-*.rspec
-*.ri
