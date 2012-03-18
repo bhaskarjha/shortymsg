@@ -1,31 +1,33 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.2'
-gem 'bootstrap-sass', '2.0.0'
-gem 'pg', '0.12.2'
+gem 'rails', '3.2.2' #rails gem
+gem 'bootstrap-sass', '2.0.0' # css bootstrapper
+gem 'pg', '0.12.2' # postgresql gem
+gem 'bcrypt-ruby', '3.0.1'  #cryptography gem for password hashing
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
 #  gem 'sqlite3', '1.3.5'
-  gem 'rspec-rails', '2.8.1'
-  gem 'guard-rspec', '0.5.5'
+  gem 'rspec-rails', '2.8.1' # for test framework
+  gem 'guard-rspec', '0.5.5' # for test framework 
+  gem 'annotate', '~> 2.4.1.beta' # for annotating relation info to the model file
 end
 
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '3.2.4'
-  gem 'coffee-rails', '3.2.2'
-
+  gem 'sass-rails',   '3.2.4' # sass/ css framework for rails
+  gem 'coffee-rails', '3.2.2' #coffee script for js
+ 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer'
 
-  gem 'uglifier', '1.2.3'
+  gem 'uglifier', '1.2.3' # javascript
 end
 
-gem 'jquery-rails', '2.0.0'
+gem 'jquery-rails', '2.0.0' # jquery gem
 
 group :test do
   gem 'rspec-rails', '2.8.1'
@@ -33,7 +35,7 @@ group :test do
   gem 'rb-inotify', '0.8.8'
   gem 'libnotify', '0.5.9'
   gem 'guard-spork', '0.3.2'
-  gem 'spork', '0.9.0' 
+  gem 'spork', '0.9.0'  # spork test server gem
 end
 
 #group :production do
