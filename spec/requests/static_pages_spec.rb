@@ -4,6 +4,10 @@ describe "Static pages" do
   
     subject { page }  # to test
     
+    shared_examples_for "all static pages" do
+        it { should have_selector('h1', text: heading) } 
+        it { should have_selector('title', text: full_title(page_title)) }
+    end
   # let is the Rspec function that stores argument value in a variable 
 #  let(:base_title) {"Ruby on Rails Tutorials Sample App"}
  
@@ -12,9 +16,10 @@ describe "Static pages" do
     
     before { visit root_path } # path to visit for each condition
     
-    it { should have_selector('h1', :text=>"Sample App") } 
-    it { should have_selector('title', :text => full_title('')) }
-    it { should_not have_selector('title', :text => "| Home") }
+    let(:heading) {"Sample App"}
+    let(:page_title) {''}
+    it_should_behave_like "all static pages"
+    it { should_not have_selector('title', text: "| Home") }
    
   end
   
@@ -22,26 +27,50 @@ describe "Static pages" do
   describe "Help page" do
     before { visit help_path } # path to visit for each condition
     
-    it { should have_selector('h1', :text =>"Help") }
-    it { should have_selector('title', :text => full_title('Help')) }
-   
+    let(:heading) {"Help"}
+    let(:page_title) {"Help"}
+    it_should_behave_like "all static pages"
    end
    
    # test the About page
    describe "About page" do
     before { visit about_path } # path to visit for each condition
-    
-    it { should have_selector('h1', :text=> "About Us") } 
-    it { should have_selector('title', :text => full_title('About Us')) }
+    let(:heading) {"About Us"}
+    let(:page_title) {"About Us"}
+    it_should_behave_like "all static pages"
    end
    
    # test the Contact page
    describe "Contact page" do
     before { visit contact_path } # path to visit for each condition
-        
-        it { should have_selector('h1', :text=> "Contact Us") }
-        it { should have_selector('title', :text => full_title('Contact Us')) }
+        let(:heading) {"Contact Us"}
+        let(:page_title) {"Contact Us"}
+        it_should_behave_like "all static pages"      
     end 
+    
+    # Tests that links goes to where it is intended 
+   #  shared_examples_for "Click Links" do
+    #        click_link link
+     #       page.should have_selector 'title', text: full_title(page_title)
+      #  end
+    it "should have the right links on the layout" do
+        visit root_path
+       
+        click_link 'About'
+        page.should have_selector 'title', text: full_title('About Us')
+        
+        click_link 'Help'
+        page.should have_selector 'title', text: full_title('Help')
+        
+        click_link 'Contact'
+        page.should have_selector 'title', text: full_title('Contact Us')
+        
+        click_link 'Home'
+        page.should have_selector 'title', text: full_title('')
+        
+        click_link 'Sign up now!'
+        page.should have_selector 'title', text: full_title('Sign up')
+    end        
 end
 
   
