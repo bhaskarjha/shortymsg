@@ -2,69 +2,46 @@ require 'spec_helper'
 
 describe "Static pages" do
   
+    subject { page }  # to test
+    
   # let is the Rspec function that stores argument value in a variable 
-  let(:base_title) {"Ruby on Rails Tutorials Sample App"}
+#  let(:base_title) {"Ruby on Rails Tutorials Sample App"}
  
   # tests the home page
   describe "Home page" do
-    it "should have the content 'Sample App'" do
-      visit '/static_pages/home'
-      page.should have_selector('h1', :text=>"Sample App") 
-    end
     
-    it "should have base title" do
-      visit '/static_pages/home'
-      page.should have_selector('title', 
-                    :text => "#{base_title}")
-    end
+    before { visit root_path } # path to visit for each condition
     
-    it "should not have title Home" do
-        visit '/static_pages/home'
-        page.should_not have_selector('title', :text => "| Home")
-    end
+    it { should have_selector('h1', :text=>"Sample App") } 
+    it { should have_selector('title', :text => full_title('')) }
+    it { should_not have_selector('title', :text => "| Home") }
+   
   end
   
   # tests the help page 
   describe "Help page" do
-    it "should have the content 'Help'" do
-      visit '/static_pages/help'
-      page.should have_selector('h1', :text =>"Help")
-    end
+    before { visit help_path } # path to visit for each condition
     
-    it "should have the title 'Help'" do
-      visit '/static_pages/help'
-      page.should have_selector('title',
-                      :text => "#{base_title} | Help")
-    end
+    it { should have_selector('h1', :text =>"Help") }
+    it { should have_selector('title', :text => full_title('Help')) }
+   
    end
    
    # test the About page
    describe "About page" do
-    it "should have the content 'About Us'" do
-     visit '/static_pages/about'
-     page.should have_selector('h1', :text=> "About Us")
-    end
+    before { visit about_path } # path to visit for each condition
     
-    it "should have title 'About Us'" do
-      visit '/static_pages/about'
-      page.should have_selector('title',
-                        :text => "#{base_title} | About Us")
-    end
+    it { should have_selector('h1', :text=> "About Us") } 
+    it { should have_selector('title', :text => full_title('About Us')) }
    end
    
    # test the Contact page
    describe "Contact page" do
-        it "should have the content 'Contact Us'" do
-            visit '/static_pages/contact'
-            page.should have_selector('h1', :text=> "Contact Us")
-        end
+    before { visit contact_path } # path to visit for each condition
         
-        it "should have title 'Contact Us'" do
-            visit '/static_pages/contact'
-            page.should have_selector('title', 
-                            :text => "#{base_title} | Contact Us")
-        end
-   end 
+        it { should have_selector('h1', :text=> "Contact Us") }
+        it { should have_selector('title', :text => full_title('Contact Us')) }
+    end 
 end
 
   
